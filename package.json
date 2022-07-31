@@ -1,0 +1,23 @@
+{
+  "name": "CriptografyAPP",
+  "version": "1.0.0",
+  "description": "meu primeiro app de criptografia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nidhogger/CriptografyAPP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nidhogger/CriptografyAPP/issues"
+  },
+  "homepage": "https://github.com/Nidhogger/CriptografyAPP#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
