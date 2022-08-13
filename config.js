@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyp = require("body-parser");
-const rote = require("./rotas.js");
+const router = require("./rotas.js");
 
 const app = express();
 
@@ -10,6 +10,6 @@ app.use(bodyp.urlencoded({
     extended:false
 }));
 
-app.use("/", rote);
+app.use("/", router);
 
 module.exports = app;

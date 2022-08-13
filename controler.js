@@ -1,5 +1,5 @@
 function test(req, res){
-    res.json({"batata": "delicia"});
+    res.json({"test": "test"});
 };
 
 exports.test = test;

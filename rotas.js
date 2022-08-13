@@ -1,8 +1,8 @@
 const express = require("express");
 const controler = require("./controler.js");
 
-const rote = express.Router();
+const router = express.Router();
 
-rote.get("/banana", controler.test);
+router.get("/test", controler.test);
 
-module.exports = rote;
+module.exports = router;
