@@ -1,9 +1,12 @@
+const cryptography = require("./cryptography.js");
+const cript = cryptography.cript;
+
 function test(req, res){
     res.json({"test": "test"});
 };
 
 function Cbinary(req, res){
-    console.log("test");
+    res.send(cript.binary(req.query.text, req.query.type))
 };
 
 exports.test = test;
