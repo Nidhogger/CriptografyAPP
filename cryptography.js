@@ -28,18 +28,12 @@ class Cryptography {
     }
 
     _binarycorrection(string) {
-        let input = string;
         let output = "";
-        let loop = 0;
-        for (var i = 0; i < input.length; i++) {
-            if (loop === 8) {
+        for (var i = 0; i < string.length; i++) {
+            if (i % 8 == 0) {
                 output += " ";
-                loop = 0;
-                i--;
-            } else {
-                output += input[i];
-                loop++;
             }
+            output += string[i];
         }
 
         return output;
