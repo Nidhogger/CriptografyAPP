@@ -1,15 +1,15 @@
 class Cryptography {
     constructor() {}
 
-    binary(string, key) {
-        if (key === "Decript") {
-            return this.binarytostring(string);
+    binary(string, type) {
+        if (type === "Decript") {
+            return this._binarytostring(this._binarycorrection(string));
         } else {
-            return this.stringtobinary(string);
+            return this._stringtobinary(string);
         }
     }
 
-    stringtobinary(string) {
+    _stringtobinary(string) {
         var output = "";
         var input = string;
         for (var i = 0; i < input.length; i++) {
@@ -18,13 +18,31 @@ class Cryptography {
         return output;
     }
 
-    binarytostring(string) {
+    _binarytostring(string) {
         return string.split(" ").map(function (elem) {
                 if (elem === "") {
                 } else {
                     return String.fromCharCode(parseInt(elem, 2));
                 }
             }).join("");
+    }
+
+    _binarycorrection(string) {
+        let input = string;
+        let output = "";
+        let loop = 0;
+        for (var i = 0; i < input.length; i++) {
+            if (loop === 8) {
+                output += " ";
+                loop = 0;
+                i--;
+            } else {
+                output += input[i];
+                loop++;
+            }
+        }
+
+        return output;
     }
 }
 

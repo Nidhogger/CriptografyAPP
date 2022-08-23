@@ -6,7 +6,7 @@ function test(req, res){
 };
 
 function Cbinary(req, res){
-    console.log(cript.binary("01110100 01100101 01110011 01110100 ", "Decript"));
+    res.send(cript.binary(req.query.text, req.query.type))
 };
 
 exports.test = test;
