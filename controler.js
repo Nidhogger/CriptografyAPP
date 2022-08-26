@@ -10,7 +10,7 @@ function Cbinary(req, res){
 };
 
 function Ccaesar(req, res){
-    res.json({"test": "test"});
+    res.send(cript.caesar(req.query.text, req.query.direction, req.query.key));
 };
 
 function Cvigenere(req, res){
