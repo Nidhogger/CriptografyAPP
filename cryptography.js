@@ -38,6 +38,40 @@ class Cryptography {
 
         return output;
     }
+
+    caesar(str, direction,key) {
+        if (direction == "right") {
+            return this._rot3(str,parseInt(key))
+        } else {
+            return this._rot4(str,parseInt(key))
+        }
+    }
+
+    _rot3(str, key, regex = /[\W]/g) {
+        return str.toUpperCase()
+          .split("")
+          .map((i) => (
+            regex.test(i) ? i : i.charCodeAt() > 64 && i.charCodeAt() < 100 ? 
+            String.fromCharCode(
+              i.charCodeAt() + key > 90 ? 
+              i.charCodeAt() + key - 26 : 
+              i.charCodeAt() + key)
+              : i))
+          .join("");
+    }
+    
+    _rot4(str, key, regex = /[\W]/g) {
+        return str.toUpperCase()
+          .split("")
+          .map((i) => (
+            regex.test(i) ? i : i.charCodeAt() > 64 && i.charCodeAt() < 100 ? 
+            String.fromCharCode(
+              i.charCodeAt() - key < 65 ? 
+              i.charCodeAt() - key + 26 : 
+              i.charCodeAt() - key)
+              : i))
+          .join("");
+    }    
 }
 
 let cript = new Cryptography();
