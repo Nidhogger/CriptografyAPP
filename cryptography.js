@@ -51,7 +51,7 @@ class Cryptography {
         return str.toUpperCase()
           .split("")
           .map((i) => (
-            regex.test(i) ? i : i.charCodeAt() > 64 && i.charCodeAt() < 100 ? 
+            regex.test(i) ? i : i.charCodeAt() > 64 && i.charCodeAt() < 91 ? 
             String.fromCharCode(
               i.charCodeAt() + key > 90 ? 
               i.charCodeAt() + key - 26 : 
@@ -64,7 +64,7 @@ class Cryptography {
         return str.toUpperCase()
           .split("")
           .map((i) => (
-            regex.test(i) ? i : i.charCodeAt() > 64 && i.charCodeAt() < 100 ? 
+            regex.test(i) ? i : i.charCodeAt() > 64 && i.charCodeAt() < 91 ? 
             String.fromCharCode(
               i.charCodeAt() - key < 65 ? 
               i.charCodeAt() - key + 26 : 
@@ -72,6 +72,34 @@ class Cryptography {
               : i))
           .join("");
     }    
+
+    vigenere(str, key, direction){
+        let arr = this._vigenereKey(key);
+        let loops = 0;
+        let output = "";
+        let string = str.toUpperCase().replace(/[^A-Z]/g, "");
+        let n = Math.round((string.length / arr.length) + 1);
+        for (let i = 0; i < n; i++){
+          for(let y = 0; y < arr.length; y++){
+            let strL = string[loops + y];
+            let arrL = arr[y];
+            if(strL != "" && strL != null && strL != undefined){
+              output += this.caesar(strL, direction,arrL);
+            }
+          }
+          loops = loops + arr.length;
+        }
+        return output
+      }
+
+      _vigenereKey(str){
+        let string = str.toUpperCase().replace(/[^A-Z]/g, "")
+        return string.split("").map((i)=>{
+          if(i.charCodeAt() > 64 && i.charCodeAt() < 91){
+            return i.charCodeAt() - 65;
+          }
+        })
+      }
 }
 
 let cript = new Cryptography();

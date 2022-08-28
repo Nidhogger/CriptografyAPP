@@ -14,7 +14,7 @@ function Ccaesar(req, res){
 };
 
 function Cvigenere(req, res){
-    res.json({"test": "test"});
+    res.send(cript.vigenere(req.query.text, req.query.key, req.query.direction));
 };
 
 function Cautokey(req, res){
