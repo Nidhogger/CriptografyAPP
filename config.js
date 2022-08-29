@@ -37,6 +37,14 @@ app.use(function(req,res,next){
             res.status(400).send("houve um problema com a key. ")
         }
     }
+    if(req.path === "/PolybiusSquare"){
+        if(req.query.text == "" || req.query.text == null || req.query.text == undefined){
+            res.status(400).send("houve um problema com o texto. ")
+        }
+        if(req.query.type != "Decript" && req.query.type != "Encript"){
+            res.status(400).send("houve um problema com o type. ")
+        }
+    }
     next();
 });
 

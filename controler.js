@@ -22,7 +22,7 @@ function Cautokey(req, res){
 };
 
 function Cpolybius(req, res){
-    res.json({"test": "test"});
+    res.send(cript.polybius(req.query.text, req.query.type));
 };
 
 function Cnihilist(req, res){

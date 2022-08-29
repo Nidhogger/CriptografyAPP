@@ -100,6 +100,46 @@ class Cryptography {
           }
         })
       }
+
+      polybius(string, type) {
+        if (type === "Decript") {
+            return this._polybiusToString(string);
+        } else {
+            return this._stringToPolybius(string);
+        }
+    }
+
+    _stringToPolybius(str){
+      let abc = [["A", "B", "C", "D", "E"], ["F", "G", "H", "I", "J"], ["K", "L", "M", "N", "O"], ["P", "Q", "R", "S", "T"], ["U", "V", "W", "X", "Z"]];
+    
+    let string = str.toUpperCase().replace(/[^A-Z]/g, "").replace(/[Y]/g, "I");
+    
+    return string.split("").map((e)=>{
+      for(let i = 0; i < abc.length; i++){
+      let index = abc[i].findIndex((rank) => rank === e);
+      if(index != -1){
+        return [i+1, index+1];
+      }
+    }
+    }).toString()
+    }
+
+    _polybiusToString(str){
+      let abc = [["A", "B", "C", "D", "E"], ["F", "G", "H", "I", "J"], ["K", "L", "M", "N", "O"], ["P", "Q", "R", "S", "T"], ["U", "V", "W", "X", "Z"]];
+      let arr = []
+      let output = "";
+      let string = str.split(",")
+      for(let i = 0; i < string.length; i = i + 2){
+        arr.push([string[i],string[i+1]])
+      }
+    
+      for(let y = 0; y < arr.length; y++){
+        let index1 = parseInt(arr[y][0]);
+        let index2 = parseInt(arr[y][1]);
+        output += abc[index1-1][index2-1]
+      }
+      return output
+    }
 }
 
 let cript = new Cryptography();
