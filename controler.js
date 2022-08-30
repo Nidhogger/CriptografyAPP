@@ -18,7 +18,7 @@ function Cvigenere(req, res){
 };
 
 function Cautokey(req, res){
-    res.json({"test": "test"});
+    res.send(cript.autoKey(req.query.text, req.query.key, req.query.type));
 };
 
 function Cpolybius(req, res){
@@ -26,7 +26,7 @@ function Cpolybius(req, res){
 };
 
 function Cnihilist(req, res){
-    res.json({"test": "test"});
+    res.send(cript.nihilist(req.query.text, req.query.key, req.query.type));
 };
 
 exports.test = test;
