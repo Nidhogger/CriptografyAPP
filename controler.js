@@ -18,15 +18,15 @@ function Cvigenere(req, res){
 };
 
 function Cautokey(req, res){
-    res.json({"test": "test"});
+    res.send(cript.autoKey(req.query.text, req.query.key, req.query.type));
 };
 
 function Cpolybius(req, res){
-    res.json({"test": "test"});
+    res.send(cript.polybius(req.query.text, req.query.type));
 };
 
 function Cnihilist(req, res){
-    res.json({"test": "test"});
+    res.send(cript.nihilist(req.query.text, req.query.key, req.query.type));
 };
 
 exports.test = test;
