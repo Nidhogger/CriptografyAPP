@@ -5,7 +5,7 @@ class Cryptography {
     }
 
     binary(string, type) {
-        if (type === "Decript") {
+        if (type === "Decrypt") {
             return this._binarytostring(this._binarycorrection(string));
         } else {
             return this._stringtobinary(string);
@@ -105,7 +105,7 @@ class Cryptography {
       }
 
       polybius(string, type) {
-        if (type === "Decript") {
+        if (type === "Decrypt") {
             return this._polybiusToString(string, this.abc);
         } else {
             return this._stringToPolybius(string, this.abc);
@@ -145,7 +145,7 @@ class Cryptography {
     nihilist(str, key, encrip){
       let grid = this._nihilistGrid(this._nihilistKey(key));
       let txt = this._stringToPolybius(str, grid).split(",");
-      if(encrip === "Decript"){
+      if(encrip === "Decrypt"){
         txt = str.split(",")
       }
       let password = this._stringToPolybius(key, this.abc).split(",");
@@ -158,7 +158,7 @@ class Cryptography {
                 let strL = parseInt(txt[loops + y]);
                 let arrL = parseInt(password[y]);
                 let result = strL - arrL;
-                if(encrip == "Decript"){
+                if(encrip == "Decrypt"){
                   result = strL + arrL;
                 }
                 if( /[\d]/g.test(result)){
@@ -168,7 +168,7 @@ class Cryptography {
               }
               loops = loops + parseInt(password.length);
             }
-      if(encrip == "Decript"){
+      if(encrip == "Decrypt"){
         return this._polybiusToString(output.toString(), grid)
       }else{
         return output.toString()
@@ -207,10 +207,10 @@ class Cryptography {
     }
 
     autoKey(str, key, encrip){
-      if (encrip === "Decript") {
+      if (encrip === "Decrypt") {
         return this._autokeyToString(str, key);
     } else {
-      if( req.query.key == null || req.query.key == undefined){
+      if( key == null || key == undefined){
         return this._stringToautoKey(str, "");
     }else{
       return this._stringToautoKey(str, key);
@@ -220,8 +220,18 @@ class Cryptography {
 
     _stringToautoKey(str, key){
       let password = key + str;
-      let pass2 = password.toUpperCase().replace(/[^A-Z]/g, "").substring(0,((password.length - key.toUpperCase().replace(/[^A-Z]/g, "").split("").length) - 1));
-      return this.vigenere(str, pass2, "right")
+      if(key == ""){
+        password = str.toUpperCase().replace(/[^A-Z]/g, "").substring((str.toUpperCase().replace(/[^A-Z]/g, "").length - 6 )) + str;
+      }
+      let pass2 = password.toUpperCase().replace(/[^A-Z]/g, "").substring(0,((password.length - key.toUpperCase().replace(/[^A-Z]/g, "").split("").length)));
+      if(key == ""){
+        let result = this.vigenere(str, pass2, "right")
+        let res1 = `${result}
+        Password: ${str.toUpperCase().replace(/[^A-Z]/g, "").substring((str.toUpperCase().replace(/[^A-Z]/g, "").length - 6 ))}`
+        return res1
+      }else{
+        return this.vigenere(str, pass2, "right")
+      }
     }
 
     _autokeyToString(str, key){
@@ -230,8 +240,7 @@ class Cryptography {
       let output = "";
 
       do {
-        let myRe = new RegExp(`^${password}`, "g");
-        let pass2 = password + output.replace(myRe, "")
+        let pass2 = password + output;
         let str2 = string.substring(0, ( pass2.length ))
         output = this.vigenere(str2, pass2, "left")
      } while (output.length < string.length);
