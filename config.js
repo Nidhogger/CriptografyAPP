@@ -22,7 +22,7 @@ app.use(function(req,res,next){
         if(req.query.text == "" || req.query.text == null || req.query.text == undefined){
             res.status(400).send("houve um problema com o texto. ")
         }
-        if(req.query.type != "Decript" && req.query.type != "Encript"){
+        if(req.query.type != "Decrypt" && req.query.type != "Encrypt"){
             res.status(400).send("houve um problema com o type. ")
         }
     }
@@ -41,7 +41,7 @@ app.use(function(req,res,next){
         if(req.query.text == "" || req.query.text == null || req.query.text == undefined){
             res.status(400).send("houve um problema com o texto. ")
         }
-        if(req.query.type != "Decript" && req.query.type != "Encript"){
+        if(req.query.type != "Decrypt" && req.query.type != "Encrypt"){
             res.status(400).send("houve um problema com o type. ")
         }
     }
@@ -49,7 +49,7 @@ app.use(function(req,res,next){
         if(req.query.text == "" || req.query.text == null || req.query.text == undefined){
             res.status(400).send("houve um problema com o texto. ")
         }
-        if(req.query.type != "Decript" && req.query.type != "Encript"){
+        if(req.query.type != "Decrypt" && req.query.type != "Encrypt"){
             res.status(400).send("houve um problema com o type. ")
         }
         if(req.query.key == "" || req.query.key == null || req.query.key == undefined){
@@ -60,12 +60,12 @@ app.use(function(req,res,next){
         if(req.query.text == "" || req.query.text == null || req.query.text == undefined){
             res.status(400).send("houve um problema com o texto. ")
         }
-        if(req.query.type != "Decript" && req.query.type != "Encript"){
+        if(req.query.type != "Decrypt" && req.query.type != "Encrypt"){
             res.status(400).send("houve um problema com o type. ")
         }
-        if(req.query.type == "Decript"){
+        if(req.query.type == "Decrypt"){
             if(req.query.key == "" || req.query.key == null || req.query.key == undefined){
-                res.status(400).send("Para Decript AutoKey requer uma Key. ")
+                res.status(400).send("Para Decrypt AutoKey requer uma Key. ")
             }
         }
     }
